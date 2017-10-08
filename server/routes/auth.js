@@ -82,40 +82,32 @@ function validateLoginForm(payload) {
  * Method that creates a new user and saves it in the database
  * 
  * @param {object} payload - the HTTP body message
+ * @param {object} res     - the result json that we send based on success or fail
  * @returns {object} The result of create user. Object contains a boolean validation result,
  *                   errors tips, and a global message for the whole form.
  */ 
-function createUser(payload) {
+function createUser(payload, res) {
     let password = bcrypt.hashSync(payload.password, salt);
     let query = "INSERT INTO users (name, password, email, phone) VALUES ('" + payload.name + "', '" + password + "', '" + payload.email + "', '" + payload.phone + "')";
-    
-    let successFlag = true;
-    let errorMessage = '';
-    
+
     db.query(query).spread(function(result, metadata){
-       successFlag = true;
+        return res.status(200).json({
+            success: true,
+            message: 'You have successfully signed up! Now you should be able to log in.'
+        });
     }).catch(function(err){
-        successFlag = false;
-        errorMessage = err;
+        return res.status(500).json({
+           success: false,
+           message: err
+        });
     });
-    
-    if (!successFlag) {
-        return {
-          success: successFlag,
-          message: errorMessage
-        };
-    }
-    
-    return {
-      success: successFlag,
-      message: 'User was successfully created'
-    };
 }
 
 /**
  * Method that creates a new user and saves it in the database
  * 
  * @param {object} payload - the HTTP body message
+ * @param {object} res     - the result json that we send based on success or fail
  * @returns {object} The result of login. Object contains a boolean validation result,
  *                   errors tips, and a global message for the whole form.
  */ 
@@ -165,18 +157,7 @@ router.post('/signup', (req, res) => {
        });
    }
    
-   const createUserResult = createUser(req.body);
-   if (!createUserResult.success) {
-       return res.status(500).json({
-          success: false,
-          message: createUserResult.message
-       });
-   }
-   
-   return res.status(200).json({
-       success: true,
-       message: 'You have successfully signed up! Now you should be able to log in.'
-   });
+   createUser(req.body, res);
 });
 
 router.post('/login', (req, res) => {
