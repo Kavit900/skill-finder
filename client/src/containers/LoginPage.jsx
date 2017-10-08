@@ -51,7 +51,7 @@ class LoginPage extends React.Component {
           errors: {}
         });
 
-        console.log('The form is valid');
+        console.log(xhr);
       } else {
         // failure
 

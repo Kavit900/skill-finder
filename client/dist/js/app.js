@@ -40816,7 +40816,7 @@
 	            errors: {}
 	          });
 
-	          console.log('The form is valid');
+	          console.log(xhr);
 	        } else {
 	          // failure
 
@@ -43008,7 +43008,8 @@
 	      user: {
 	        email: '',
 	        name: '',
-	        password: ''
+	        password: '',
+	        phone: ''
 	      }
 	    };
 
@@ -43054,7 +43055,8 @@
 	      var name = encodeURIComponent(this.state.user.name);
 	      var email = encodeURIComponent(this.state.user.email);
 	      var password = encodeURIComponent(this.state.user.password);
-	      var formData = 'name=' + name + '&email=' + email + '&password=' + password;
+	      var phone = encodeURIComponent(this.state.user.phone);
+	      var formData = 'name=' + name + '&email=' + email + '&password=' + password + '&phone=' + phone;
 
 	      // create an AJAX request
 	      var xhr = new XMLHttpRequest();
@@ -43070,7 +43072,7 @@
 	            errors: {}
 	          });
 
-	          console.log('The form is valid');
+	          console.log(xhr);
 	        } else {
 	          // failure
 
@@ -43187,6 +43189,17 @@
 	          onChange: onChange,
 	          errorText: errors.password,
 	          value: user.password
+	        })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'field-line' },
+	        _react2.default.createElement(_TextField2.default, {
+	          floatingLabelText: 'Phone',
+	          name: 'phone',
+	          onChange: onChange,
+	          errorText: errors.phone,
+	          value: user.phone
 	        })
 	      ),
 	      _react2.default.createElement(

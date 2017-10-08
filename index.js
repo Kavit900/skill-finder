@@ -2,6 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+const path = require('path');
+const jwt = require('jsonwebtoken');
+const db = require('./server/database/database');
+
+process.env.SECRET = 'skill-finder';
 
 // tell the app to look for static file in these directories
 app.use(express.static('./server/static/'));

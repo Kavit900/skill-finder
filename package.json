@@ -18,7 +18,12 @@
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0",
     "react-tap-event-plugin": "^2.0.1",
-    "validator": "^6.2.0"
+    "validator": "^6.2.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^7.4.0",
+    "pg": "^6.1.5",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.4"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",

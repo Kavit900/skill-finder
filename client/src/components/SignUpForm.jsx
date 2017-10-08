@@ -47,6 +47,16 @@ const SignUpForm = ({
           value={user.password}
         />
       </div>
+      
+      <div className="field-line">
+        <TextField
+          floatingLabelText="Phone"
+          name="phone"
+          onChange={onChange}
+          errorText={errors.phone}
+          value={user.phone}
+        />
+      </div>
 
       <div className="button-line">
         <RaisedButton type="submit" label="Create New Account" primary />

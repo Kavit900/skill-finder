@@ -16,7 +16,8 @@ class SignUpPage extends React.Component {
       user: {
         email: '',
         name: '',
-        password: ''
+        password: '',
+        phone: ''
       }
     };
 
@@ -52,7 +53,8 @@ class SignUpPage extends React.Component {
     const name = encodeURIComponent(this.state.user.name);
     const email = encodeURIComponent(this.state.user.email);
     const password = encodeURIComponent(this.state.user.password);
-    const formData = `name=${name}&email=${email}&password=${password}`;
+    const phone = encodeURIComponent(this.state.user.phone);
+    const formData = `name=${name}&email=${email}&password=${password}&phone=${phone}`;
     
     // create an AJAX request
     const xhr = new XMLHttpRequest();
@@ -68,7 +70,7 @@ class SignUpPage extends React.Component {
           errors: {}
         });
 
-        console.log('The form is valid');
+        console.log(xhr);
       } else {
         // failure
 
