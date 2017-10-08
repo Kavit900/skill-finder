@@ -17,7 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // routes
 const authRoutes = require('./server/routes/auth');
+const apiRoutes = require('./server/routes/api');
 app.use('/auth', authRoutes);
+app.use('/api', apiRoutes);
 
 // start the server
 app.listen(process.env.PORT || 8080, () => {
